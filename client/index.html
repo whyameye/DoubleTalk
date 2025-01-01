@@ -1,21 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Video Recorder</title>
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Web Video Recorder</title>
 </head>
+
 <body>
-  <h1>Web Video Recorder</h1>
-  <video id="webcam" autoplay playsinline></video>
-  <br>
-  <button id="start">Start Recording</button>
-  <button id="stop" disabled>Stop Recording</button>
-  <button id="uploadBtn">Upload Recording</button>
-  <p id="status"></p>
-  <h2>Recorded Video:</h2>
-  <video id="recorded" controls></video>
-  
-  <script src="script.js"></script>
+<div class="container border rounded">
+    <h1 style="text-align: center">Doubletalk</h1>
+<div class="row">
+    <div class="col-sm">
+        <div id="info1" style="text-align: center">info1 placeholder</div>
+        <div id="info2" style="text-align: center">info2 placeholder</div>
+    </div>
+</div>
+    <!--video boxes-->
+    <div class="row">
+        <div class="col-sm-6 p-6">
+            <h3 style="text-align: center">
+                Player 1
+            </h3>
+        </div>
+        <div class="col-sm-6 p-6">
+            <h3 style="text-align: center">
+                Player 2
+            </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 p-6">
+            <div class="ratio ratio-4x3">
+                <video id="webcam" autoplay playsinline></video>
+            </div>
+        </div>
+        <div class="col-sm-6 p-6">
+            <video id="recorded" controls></video>
+        </div>
+    </div> <!-- row -->
+    <br>
+
+    <div class="row">
+
+        <!--Player 1 controls-->
+        <div class="col-sm-6 p-6">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn1" checked/>
+                        <label class="form-check-label" for="videoOn1">
+                            <small>
+                                Monitor
+                            </small>
+                        </label>
+                    </div> <!-- switch -->
+                </div> <!-- col -->
+                <div class="col-sm-8">
+                    <b>
+                        status:
+                    </b>
+                    <span id="status1">idle</span>
+                </div> <!-- col -->
+            </div> <!-- row -->
+
+            <div class="controls row gx-2 border rounded" style="padding:3%">
+
+                <div class="col recCol">
+                    <button id="recordBtn1" class="btn btn-danger w-100">
+                        <i class="bi bi-record-circle btn-icon">
+                        </i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="revBtn1" class="btn btn-success w-100">
+                        <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="stopBtn1" class="btn btn-secondary w-100">
+                        <i class="bi bi-stop-circle btn-icon"></i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="playBtn1" class="btn btn-primary w-100">
+                        <i class="bi bi-play-circle btn-icon"></i>
+                    </button>
+                </div>
+
+            </div> <!-- controls -->
+        </div> <!-- col -->
+
+        <!--player 2 controls-->
+        <div class="col-sm-6 p-6">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn2" checked/>
+                        <label class="form-check-label" for="videoOn2">
+                            <small>
+                                Monitor
+                            </small>
+                        </label>
+                    </div> <!-- switch -->
+                </div> <!-- col -->
+                <div class="col-sm-8">
+                    <b>status:</b>
+                    <span id="status2">
+	      idle
+	    </span>
+                </div> <!-- col -->
+            </div> <!-- row -->
+            <div class="controls row gx-2 border rounded" style="padding:3%">
+
+                <div class="col recCol">
+                    <button id="recordBtn2" class="btn btn-danger w-100">
+                        <i class="bi bi-record-circle btn-icon">
+                        </i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="revBtn2" class="btn btn-success w-100">
+                        <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="stopBtn2" class="btn btn-secondary w-100">
+                        <i class="bi bi-stop-circle btn-icon"></i>
+                    </button>
+                </div>
+
+                <div class="col">
+                    <button id="playBtn2" class="btn btn-primary w-100">
+                        <i class="bi bi-play-circle btn-icon"></i>
+                    </button>
+                </div>
+
+            </div> <!-- controls -->
+        </div> <!-- col -->
+
+    </div> <!-- row -->
+</div>
+<!== container -->
+
+<script src="script.js"></script>
 </body>
 </html>

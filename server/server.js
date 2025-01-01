@@ -1,9 +1,15 @@
 require('dotenv').config();
+
 const fs = require('fs');
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors'); // Import CORS
+const ffmpegStatic = require('ffmpeg-static');
+const ffmpeg = require('fluent-ffmpeg');
+
+// Tell fluent-ffmpeg where it can find FFmpeg
+ffmpeg.setFfmpegPath(ffmpegStatic);
 
 // Configure storage for uploaded videos
 const storage = multer.diskStorage({
@@ -16,6 +22,28 @@ const storage = multer.diskStorage({
     cb(null, `recorded-video-${timestamp}${ext}`);
   }
 });
+
+function reverseFile(filePath, sendUpdate) {
+  sendUpdate('Starting reverse process');
+  ffmpeg()
+    .input(filePath)
+    .outputOptions("-vf reverse -af areverse -c:v libx264 -preset medium -crf 23 -c:a aac -b:a 192k")
+    .saveToFile('reversed.webm')
+    .on('progress', (progress) => {
+      if (progress.percent) {
+	console.log(`Processing: ${Math.floor(progress.percent)}% done`);
+	sendUpdate(`Processing: ${Math.floor(progress.percent)}% done`);
+      }
+    })
+    .on('end', () => {
+      console.log('FFmpeg has finished.');
+      sendUpdate('FFmpeg has finished.');
+  })
+  .on('error', (error) => {
+    console.error(error);
+    sendUpdate(error);
+  });
+}
 
 // Simulated File Processing
 function processFile(filePath, sendUpdate) {
@@ -95,6 +123,7 @@ app.post('/upload', upload.single('video'), async (req, res) => {
   res.status(200).send('Video uploaded successfully!');
   const sendUpdate = (message) => {
     console.log('SSE:', message);
+    console.log('locals:', app.locals.res);
     app.locals.res.write(`data: ${message}\n\n`);
   };
   await processFile("testpath", sendUpdate);

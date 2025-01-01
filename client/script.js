@@ -3,17 +3,22 @@ const PORT=3000
 
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
+const OnButton = document.getElementById('webcamOn');
+const OffButton = document.getElementById('webcamOff');
+
 const webcamVideo = document.getElementById('webcam');
 const recordedVideo = document.getElementById('recorded');
 const uploadVideo = document.getElementById('uploadBtn');
 const statusDiv = document.getElementById('status');
 
+const switchElement = document.getElementById('videoOn');
 
 let mediaRecorder; // Handles recording
 let recordedChunks = []; // Stores recorded data chunks
 let recordedBlob;
 
 const eventSource = new EventSource(myURL+":"+PORT+'/events');
+let stream;
 
 eventSource.onopen = () => {
   console.log('Connection to SSE server opened');
@@ -31,9 +36,18 @@ eventSource.onerror = (error) => {
 
 // Access the user's webcam
 async function startWebcam() {
-  const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+  stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
   webcamVideo.srcObject = stream;
+  webcamVideo.muted = true;
   return stream;
+}
+
+function stopWebcam() {
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+    webcamVideo.srcObject = null;
+    console.log('Webcam stopped');
+  }
 }
 
 // Start recording
@@ -114,10 +128,27 @@ function stopRecording() {
   stopButton.disabled = true;
 }
 
-// Event Listeners
-startButton.addEventListener('click', startRecording);
-stopButton.addEventListener('click', stopRecording);
-uploadVideo.addEventListener('click', uploadRecording);
+// Event Listener
+//OnButton.addEventListener('click',startWebcam);
+//OffButton.addEventListener('click',stopWebcam);
+//startButton.addEventListener('click', startRecording);
+//stopButton.addEventListener('click', stopRecording);
+//uploadVideo.addEventListener('click', uploadRecording);
+
+switchElement.addEventListener('change', (event) => {
+  if (event.target.checked) {
+    document.getElementById("webcam").classList.remove('tv-static');
+    startWebcam();
+  } else {
+    stopWebcam();
+    document.getElementById("webcam").classList.add('tv-static');
+  }
+});
+var myWidth = document.getElementById('webcam').offsetWidth;
+var myHeight = document.getElementById('webcam').offsetHeight;
+console.log(myWidth);
+console.log(myHeight);
+
 
 // Initialize webcam on page load
 startWebcam().catch((error) => {
