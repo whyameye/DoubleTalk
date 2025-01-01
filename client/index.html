@@ -15,64 +15,41 @@
 
 <body>
 <div class="container border rounded">
-    <div class="row border rounded">
-        <h1 class="text-primary" style="text-align: center">Backward Banter</h1>
-        <h4 style="text-align: center"><i>Guess a phrase by repeating it backward</i></h4>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-sm">
-            <h5>
-                <div id="info1" style="text-align: center">info1 placeholder</div>
-            </h5>
-            <div class="text-dark" id="info2" style="text-align: center">info2 placeholder</div>
+    <div id="titleAndInfo">
+        <div class="row border rounded">
+            <h1 class="text-primary" style="text-align: center">Backward Banter</h1>
+            <h4 style="text-align: center"><i>Guess a phrase by repeating it backward</i></h4>
         </div>
-    </div>
-    <!--video boxes-->
-    <div class="row">
-        <div class="col-sm-5 p-6">
-            <h3 style="text-align: center">
-                Player 1
-            </h3>
-        </div>
-        <div class="col-sm-2 p-6">
-        </div>
-        <div class="col-sm-5 p-6">
-            <h3 style="text-align: center">
-                Player 2
-            </h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-5 p-6">
-            <div class="ratio ratio-4x3">
-                <video id="webcam" autoplay playsinline></video>
+        <br/>
+        <div class="row">
+            <div class="col-sm">
+                <h5>
+                    <div id="info1" style="text-align: center">info1 placeholder</div>
+                </h5>
+                <div class="text-dark" id="info2" style="text-align: center">info2 placeholder</div>
             </div>
-        </div>
-        <div class="col-sm-2 p-6 d-flex align-items-center">
-            <div style="vertical-align: middle">
-                <i class="bi bi-skip-forward btn-icon"></i>
-                <br />
-                <i class="bi bi-skip-backward btn-icon disableMe"></i>
+        </div> <!-- title and info -->
+    </div>
+    <div id="players1and2" class="row">
+        <div id="player1" class="col-sm-5 p-6">
+            <div class="row" id="player1Title">
+                <h3 style="text-align: center">
+                    Player 1
+                </h3>
             </div>
-        </div>
-        <div class="col-sm-5 p-6">
-            <video id="recorded" controls></video>
-        </div>
-    </div> <!-- row -->
-    <br>
-
-    <div class="row">
-
-        <!--Player 1 controls-->
-        <div class="col-sm-5 p-6">
-            <div class="row">
+            <div class="row" id="player1Webcam">
+                <div class="ratio ratio-4x3">
+                    <video id="webcam1" autoplay playsinline></video>
+                </div>
+            </div>
+            <div class="row" id="monitorAndStatus1">
                 <div class="col-sm-4">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn1" checked/>
+                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn1"
+                               checked/>
                         <label class="form-check-label" for="videoOn1">
                             <small>
-                                Monitor
+                                Mon
                             </small>
                         </label>
                     </div> <!-- switch -->
@@ -84,90 +61,91 @@
                     <span id="status1">idle</span>
                 </div> <!-- col -->
             </div> <!-- row -->
+            <div class="row" id="buttons1">
+                <div class="controls row gx-2 border rounded" style="padding:3%">
 
-            <div class="controls row gx-2 border rounded" style="padding:3%">
+                    <div class="col recCol">
+                        <button id="recordBtn1" class="btn btn-danger w-100">
+                            <i class="bi bi-record-circle btn-icon">
+                            </i>
+                        </button>
+                    </div>
 
-                <div class="col recCol">
-                    <button id="recordBtn1" class="btn btn-danger w-100">
-                        <i class="bi bi-record-circle btn-icon">
-                        </i>
-                    </button>
-                </div>
-
-                <div class="col">
-                    <button id="revBtn1" class="btn btn-success w-100">
-                        <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
-                    </button>
-                </div>
-
-                <div class="col">
-                    <button id="stopBtn1" class="btn btn-secondary w-100">
-                        <i class="bi bi-stop-circle btn-icon"></i>
-                    </button>
-                </div>
-
-                <div class="col">
-                    <button id="playBtn1" class="btn btn-primary w-100">
-                        <i class="bi bi-play-circle btn-icon"></i>
-                    </button>
-                </div>
-
-            </div> <!-- controls -->
-        </div> <!-- col -->
-
+                    <div class="col">
+                        <button id="revBtn1" class="btn btn-success w-100">
+                            <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
+                        </button>
+                    </div>
+                    <div class="col">
+                        <button id="playBtn1" class="btn btn-primary w-100">
+                            <i class="bi bi-play-circle btn-icon"></i>
+                        </button>
+                    </div>
+                </div> <!-- controls -->
+            </div>
+        </div> <!-- col-sm-5 -->
         <div class="col-sm-2 p-6">
+            <div id="sendReceiveIcons" class="d-flex flex-column align-items-center justify-content-center"
+                 style="height: 100%; vertical-align: middle">
+                <i class="p-1 bi bi-skip-forward btn-icon"></i>
+                <i class="p-1 bi bi-skip-backward btn-icon disableMe"></i>
+            </div>
         </div>
-        <!--player 2 controls-->
-        <div class="col-sm-5 p-6">
-            <div class="row">
+        <div id="player2" class="disableMe col-sm-5 p-6">
+            <div class="row" id="player2Title">
+                <h3 style="text-align: center">
+                    Player 2
+                </h3>
+            </div>
+            <div class="row" id="player2Webcam">
+                <div class="ratio ratio-4x3">
+                    <video id="webcam2" autoplay playsinline></video>
+                </div>
+            </div>
+            <div class="row" id="monitorAndStatus2">
                 <div class="col-sm-4">
                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn2" checked/>
+                        <input class="form-check-input" type="checkbox" role="switch" id="videoOn2"
+                               checked/>
                         <label class="form-check-label" for="videoOn2">
                             <small>
-                                Monitor
+                                Mon
                             </small>
                         </label>
                     </div> <!-- switch -->
                 </div> <!-- col -->
                 <div class="col-sm-8">
-                    <b>status:</b>
-                    <span id="status2">
-	      idle
-	    </span>
+                    <b>
+                        status:
+                    </b>
+                    <span id="status2">idle</span>
                 </div> <!-- col -->
             </div> <!-- row -->
-            <div class="controls row gx-2 border rounded" style="padding:3%">
+            <div class="row" id="buttons2">
+                <div class="controls row gx-2 border rounded" style="padding:3%">
 
-                <div class="col recCol">
-                    <button id="recordBtn2" class="btn btn-danger w-100">
-                        <i class="bi bi-record-circle btn-icon">
-                        </i>
-                    </button>
-                </div>
+                    <div class="col recCol">
+                        <button id="recordBtn2" class="btn btn-danger w-100">
+                            <i class="bi bi-record-circle btn-icon">
+                            </i>
+                        </button>
+                    </div>
 
-                <div class="col">
-                    <button id="revBtn2" class="btn btn-success w-100">
-                        <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
-                    </button>
-                </div>
+                    <div class="col">
+                        <button id="revBtn2" class="btn btn-success w-100">
+                            <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
+                        </button>
+                    </div>
 
-                <div class="col">
-                    <button id="stopBtn2" class="btn btn-secondary w-100">
-                        <i class="bi bi-stop-circle btn-icon"></i>
-                    </button>
-                </div>
-
-                <div class="col">
-                    <button id="playBtn2" class="btn btn-primary w-100">
-                        <i class="bi bi-play-circle btn-icon"></i>
-                    </button>
-                </div>
-
-            </div> <!-- controls -->
-        </div> <!-- col -->
-
-    </div> <!-- row -->
+                    <div class="col">
+                        <button id="playBtn2" class="btn btn-primary w-100">
+                            <i class="bi bi-play-circle btn-icon"></i>
+                        </button>
+                    </div>
+                </div> <!-- controls -->
+            </div>
+        </div> <!-- col-sm-5 -->
+    </div>
     <br/>
     <div class="row disableMe">
         <div class="col-sm-10 p-6">
@@ -177,8 +155,8 @@
             <button type="submit" class="float-end btn btn-primary">OK</button>
         </div>
     </div>
-    <!== container -->
+</div>    <!-- container -->
 
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
