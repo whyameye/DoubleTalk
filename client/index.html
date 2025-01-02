@@ -38,8 +38,8 @@
                 </h3>
             </div>
             <div class="row" id="player1Webcam">
-                <div class="ratio ratio-4x3">
-                    <video id="webcam1" autoplay playsinline></video>
+                <div style="background-color: black" class="ratio ratio-4x3">
+                    <video id="webcam1" border autoplay playsinline></video>
                 </div>
             </div>
             <div class="row" id="monitorAndStatus1">
@@ -61,7 +61,7 @@
                     <span id="status1">idle</span>
                 </div> <!-- col -->
             </div> <!-- row -->
-            <div class="row" id="buttons1">
+            <div class="row" id="buttons1" style="padding:1%">
                 <div class="controls row gx-2 border rounded" style="padding:3%">
 
                     <div class="col recCol">
@@ -70,7 +70,6 @@
                             </i>
                         </button>
                     </div>
-
                     <div class="col">
                         <button id="revBtn1" class="btn btn-success w-100">
                             <i class="bi bi-play-circle mirrored-horizontal btn-icon"></i>
@@ -87,17 +86,17 @@
         <div class="col-sm-2 p-6">
             <div id="sendReceiveIcons" class="d-flex flex-column align-items-center justify-content-center"
                  style="height: 100%; vertical-align: middle">
-                <i class="p-1 bi bi-skip-forward btn-icon"></i>
-                <i class="p-1 bi bi-skip-backward btn-icon disableMe"></i>
+                <i id="sendToPlayer2" class="p-1 bi bi-skip-forward btn-icon"></i>
+                <i id="sendToPlayer1" class="p-1 bi bi-skip-backward btn-icon"></i>
             </div>
         </div>
-        <div id="player2" class="disableMe col-sm-5 p-6">
+        <div id="player2" class="col-sm-5 p-6">
             <div class="row" id="player2Title">
                 <h3 style="text-align: center">
                     Player 2
                 </h3>
             </div>
-            <div class="row" id="player2Webcam">
+            <div class="row" style="background-color: black" id="player2Webcam">
                 <div class="ratio ratio-4x3">
                     <video id="webcam2" autoplay playsinline></video>
                 </div>
@@ -147,12 +146,12 @@
         </div> <!-- col-sm-5 -->
     </div>
     <br/>
-    <div class="row disableMe">
+    <div class="row">
         <div class="col-sm-10 p-6">
-            <input class="form-control" type="text" placeholder="What's your phrase?">
+            <input class="form-control" id="messageArea" type="text" placeholder="What's your phrase?">
         </div>
         <div class="col-sm-2 p-6">
-            <button type="submit" class="float-end btn btn-primary">OK</button>
+            <button id="OKButton" type="submit" class="float-end btn btn-primary">OK</button>
         </div>
     </div>
 </div>    <!-- container -->
