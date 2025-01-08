@@ -101,6 +101,7 @@ async function startRecording() {
 function playVideo() {
     stopWebcam();
     webcam1.src = URL.createObjectURL(recordedBlob);
+    webcam1.muted = false;
     webcam1.play();
     console.log("playing video");
 }
